@@ -29,7 +29,7 @@ const Index = () => {
         <div className="space-y-24">
           <section className="text-center space-y-6 animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              ALEXEY VOLODIN
+              DMC DIA
             </h1>
             <p className="text-lg text-muted-foreground">
               Indie вокалист • Автор песен
