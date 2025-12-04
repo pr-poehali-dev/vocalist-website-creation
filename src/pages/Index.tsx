@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sections = [
     { id: 'home', label: 'Главная', icon: 'Home' },
@@ -65,11 +66,40 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Icon name="Menu" size={20} />
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} />
             </Button>
           </div>
         </div>
+        
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border animate-slide-in-right">
+            <div className="container mx-auto px-4 py-6 space-y-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => {
+                    setActiveSection(section.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+                    activeSection === section.id
+                      ? 'bg-primary text-primary-foreground font-semibold'
+                      : 'text-muted-foreground hover:bg-card hover:text-foreground'
+                  }`}
+                >
+                  <Icon name={section.icon as any} size={20} />
+                  {section.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
       <main className="pt-20">
